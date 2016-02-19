@@ -1,4 +1,4 @@
-package com.cc.utils.file;
+package cn.letcode.svnpack.file;
 
 import java.io.BufferedInputStream;
 import java.io.File;

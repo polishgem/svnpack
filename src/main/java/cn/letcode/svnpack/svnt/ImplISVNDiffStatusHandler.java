@@ -1,4 +1,4 @@
-package com.cc.utils.svnt;
+package cn.letcode.svnpack.svnt;
 
 import java.util.ArrayList;
 import java.util.List;

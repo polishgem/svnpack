@@ -1,13 +1,13 @@
-package com.cc.utils;
+package cn.letcode.svnpack;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 import org.tmatesoft.svn.core.wc.SVNDiffStatus;
 
-import com.cc.utils.svnt.SVNChangedFiles;
-import com.cc.utils.svnt.SVNClientConf;
-import com.cc.utils.svnt.SVNPathToClassPath;
+import cn.letcode.svnpack.svnt.SVNChangedFiles;
+import cn.letcode.svnpack.svnt.SVNClientConf;
+import cn.letcode.svnpack.svnt.SVNPathToClassPath;
 
 public class SvnPack {
 	static Logger log = Logger.getLogger(SvnPack.class.getName());

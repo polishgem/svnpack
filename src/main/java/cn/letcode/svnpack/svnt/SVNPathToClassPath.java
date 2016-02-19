@@ -1,4 +1,4 @@
-package com.cc.utils.svnt;
+package cn.letcode.svnpack.svnt;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.apache.tools.zip.ZipOutputStream;
 import org.tmatesoft.svn.core.wc.SVNDiffStatus;
 
-import com.cc.utils.file.FileUtil;
+import cn.letcode.svnpack.file.FileUtil;
 
 /**
  * Path相互转换

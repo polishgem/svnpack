@@ -1,4 +1,4 @@
-package com.cc.utils.svnt;
+package cn.letcode.svnpack.svnt;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,8 +15,8 @@ import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 import org.tmatesoft.svn.core.internal.io.fs.FSRepositoryFactory;
 import org.tmatesoft.svn.core.internal.io.svn.SVNRepositoryFactoryImpl;
 
-import com.cc.utils.SvnPack;
-import com.cc.utils.file.FileUtil;
+import cn.letcode.svnpack.SvnPack;
+import cn.letcode.svnpack.file.FileUtil;
 
 /**
  * 初始化svn配置的属性值

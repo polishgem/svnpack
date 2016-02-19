@@ -1,4 +1,4 @@
-package com.cc.utils.svnt;
+package cn.letcode.svnpack.svnt;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import org.tmatesoft.svn.core.wc.SVNRevision;
 import org.tmatesoft.svn.core.wc.SVNUpdateClient;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
-import com.cc.utils.file.FileUtil;
+import cn.letcode.svnpack.file.FileUtil;
 
 public class SVNChangedFiles {
 	static Logger                    log = Logger
