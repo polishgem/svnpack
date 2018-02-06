@@ -1,5 +1,5 @@
 # svnpack，配置文件说明
-`
+```
 ================================
 svntype can be  http,svn,file
 	
@@ -51,4 +51,4 @@ protype=MAVEN
  eg:zipPath=d://
 ===========================
 zipPath=d\://
-`
+```
