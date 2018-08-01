@@ -96,10 +96,10 @@ public class SVNChangedFiles {
 
 		ISVNOptions options = SVNWCUtil.createDefaultOptions(true);
 		SVNDiffClient diffClient = new SVNDiffClient(authManager, options);
-
 		ImplISVNDiffStatusHandler handler = new ImplISVNDiffStatusHandler();
-		diffClient.doDiffStatus(branchURL, startingRevision, branchURL,
-		        endingRevision, true, true, handler);
+
+		diffClient.doDiffStatus(branchURL, startingRevision, branchURL, endingRevision, SVNDepth.fromRecurse(true), true, handler);
+
 		return handler.changeFileList;
 	}
 
