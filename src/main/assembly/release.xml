@@ -29,5 +29,10 @@
     </fileSets>
 
 
-
+    <files>
+        <file>
+            <source>README.md</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+    </files>
 </assembly>
