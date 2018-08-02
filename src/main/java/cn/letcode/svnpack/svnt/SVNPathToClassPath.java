@@ -84,18 +84,17 @@ public class SVNPathToClassPath {
 	 * @throws Exception
 	 */
 	public static void getClassMavenPath(List<SVNDiffStatus> list) throws Exception {
+		log.info("开始打包...");
 		OutputStream os = null;
 		ZipOutputStream zos = null;
 		os = new FileOutputStream(SVNClientConf.zipPath);
 		zos = new ZipOutputStream(os);
 		zos.setLevel(FileUtil.compressLevel);
 		for (SVNDiffStatus status : list) {
-			System.out.println(status.getPath());
 
 			if ("pom.xml".equals(status.getPath()) || ".classpath".equals(status.getPath()) ||
 					".project".equals(status.getPath())
 					|| status.getPath().contains(".settings")) {
-				//System.out.println(status.getPath());
 				continue;
 			}
 
@@ -105,18 +104,22 @@ public class SVNPathToClassPath {
 			fp = StringUtils.remove(fp, "src/main/webapp/");
 
 			fp = fp.replace(".java", ".class");
+			String pathname = SVNClientConf.CLASSURL + FileUtil.separator + fp;
 			File file = new File(
-					SVNClientConf.CLASSURL + FileUtil.separator + fp);
+					pathname);
 			if (file.exists()) {
 				String context = SVNClientConf.PRONAME + FileUtil.separator + fp;
 				FileUtil.compress(zos, file, context);
+
+				log.info("打包文件:" + pathname);
 			} else {
-				log.warn("file is not exists!!!! the file name is:" + status.getPath());
+				log.warn("文件在编译结果目录没有找到：" + status.getPath());
 			}
 		}
 
 		zos.flush();
 		zos.close();
+		log.info("打包完成");
 	}
 
 }
