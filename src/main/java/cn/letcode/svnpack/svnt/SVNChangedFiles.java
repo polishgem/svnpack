@@ -31,8 +31,7 @@ public class SVNChangedFiles {
 	public SVNChangedFiles() throws Exception {
 		log.info("初始化获取差异文件列表实体对象!!!!!!");
 		try {
-			branchURL = SVNURL.parseURIEncoded(SVNClientConf.SVNURL
-			        + FileUtil.separator + SVNClientConf.PRONAME);
+			branchURL = SVNURL.parseURIEncoded(SVNClientConf.SVNURL);
 			startingRevision = SVNRevision.create(SVNClientConf.STARTVISION);
 			endingRevision = SVNRevision.create(SVNClientConf.ENDVISION);
 			// 仓库访问身份认证

@@ -15,31 +15,17 @@ import cn.letcode.svnpack.file.FileUtil;
 
 /**
  * Path相互转换
- * 
+ *
  * @author 帅军
- * 
+ *
  */
 public class SVNPathToClassPath {
 	static Logger log = Logger.getLogger(SVNPathToClassPath.class.getName());
 
 	/**
-	 * 将传入的svnpath路径转换成calss路径
-	 * 
-	 * @param list
-	 * @return
-	 */
-	public static List<String> getClassPath(List<String> list) {
-		List<String> cList = new ArrayList<String>();
-		for (String s : list) {
-			cList.add(SVNClientConf.CLASSURL + FileUtil.separator + SVNClientConf.PRONAME + FileUtil.separator + s);
-		}
-		return cList;
-	}
-
-	/**
 	 * 获取文件对应的class的url列表<br>
 	 * 通过传入的proType处理不同的路径
-	 * 
+	 *
 	 * @param list
 	 * @param proType
 	 * @return
@@ -58,7 +44,7 @@ public class SVNPathToClassPath {
 
 	/**
 	 * 独立处理JAVAEE项目文件目录结构
-	 * 
+	 *
 	 * @param list
 	 * @param proType
 	 * @return
@@ -76,7 +62,7 @@ public class SVNPathToClassPath {
 			fp = StringUtils.remove(fp, "WebRoot/");
 			fp = fp.replace(".java", ".class");
 			File file = new File(
-					SVNClientConf.CLASSURL + FileUtil.separator + SVNClientConf.PRONAME + FileUtil.separator + fp);
+					SVNClientConf.CLASSURL + FileUtil.separator + fp);
 			if (file.exists()) {
 				String context = SVNClientConf.PRONAME + FileUtil.separator + fp;
 				FileUtil.compress(zos, file, context);
@@ -91,7 +77,7 @@ public class SVNPathToClassPath {
 
 	/**
 	 * 独立处理 MAVEN 项目文件目录结构
-	 * 
+	 *
 	 * @param list
 	 * @param proType
 	 * @return
@@ -100,28 +86,37 @@ public class SVNPathToClassPath {
 	public static void getClassMavenPath(List<SVNDiffStatus> list) throws Exception {
 		OutputStream os = null;
 		ZipOutputStream zos = null;
-		os = new FileOutputStream(SVNClientConf.zipPath + SVNClientConf.PRONAME + ".zip");
+		os = new FileOutputStream(SVNClientConf.zipPath);
 		zos = new ZipOutputStream(os);
 		zos.setLevel(FileUtil.compressLevel);
 		for (SVNDiffStatus status : list) {
-			String fp = status.getPath().replace("src/main/java", "WEB-INF" + FileUtil.separator + "classes");
-			fp = fp.replace("src/main/resources", "WEB-INF" + FileUtil.separator + "classes");
+			System.out.println(status.getPath());
+
+			if ("pom.xml".equals(status.getPath()) || ".classpath".equals(status.getPath()) ||
+					".project".equals(status.getPath())
+					|| status.getPath().contains(".settings")) {
+				//System.out.println(status.getPath());
+				continue;
+			}
+
+			String fp = status.getPath().replace("src/main/java", FileUtil.separator + "WEB-INF/classes");
+			fp = fp.replace("src/main/resources", FileUtil.separator + "WEB-INF/classes");
 
 			fp = StringUtils.remove(fp, "src/main/webapp/");
 
 			fp = fp.replace(".java", ".class");
 			File file = new File(
-					SVNClientConf.CLASSURL + FileUtil.separator + SVNClientConf.PRONAME + FileUtil.separator + fp);
+					SVNClientConf.CLASSURL + FileUtil.separator + fp);
 			if (file.exists()) {
 				String context = SVNClientConf.PRONAME + FileUtil.separator + fp;
 				FileUtil.compress(zos, file, context);
 			} else {
-				log.warn("file is not exists!!!! the file name is:" + file.getAbsolutePath());
+				log.warn("file is not exists!!!! the file name is:" + status.getPath());
 			}
 		}
-		zos.closeEntry();
-		zos.close();
 
+		zos.flush();
+		zos.close();
 	}
 
 }
