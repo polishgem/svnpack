@@ -84,7 +84,7 @@ public class SVNPathToClassPath {
 	 * @throws Exception
 	 */
 	public static void getClassMavenPath(List<SVNDiffStatus> list) throws Exception {
-		log.info("开始打包...");
+		log.info("###############start package###############");
 		OutputStream os = null;
 		ZipOutputStream zos = null;
 		os = new FileOutputStream(SVNClientConf.zipPath);
@@ -119,7 +119,7 @@ public class SVNPathToClassPath {
 
 		zos.flush();
 		zos.close();
-		log.info("打包完成");
+		log.info("###############package success###############");
 	}
 
 }
