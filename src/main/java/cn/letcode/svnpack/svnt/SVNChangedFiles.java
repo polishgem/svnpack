@@ -29,7 +29,7 @@ public class SVNChangedFiles {
 	static ISVNAuthenticationManager authManager;
 
 	public SVNChangedFiles() throws Exception {
-		log.info("初始化获取差异文件列表实体对象!!!!!!");
+		log.info("loading change files !!!!!!");
 		try {
 			branchURL = SVNURL.parseURIEncoded(SVNClientConf.SVNURL);
 			startingRevision = SVNRevision.create(SVNClientConf.STARTVISION);

@@ -46,7 +46,7 @@ public class SVNClientConf {
 		InputStream in = null;
 		try {
 			File file = new File("conf" + FileUtil.separator + "svnpack.properties");
-			log.info("配置文件路径[" + file.getAbsolutePath() + "]");
+			log.info("config path [" + file.getAbsolutePath() + "]");
 			in = new FileInputStream(file);
 			BufferedReader bf = new BufferedReader(new InputStreamReader(in));
 			props.load(bf);
@@ -85,7 +85,7 @@ public class SVNClientConf {
 				if (in != null)
 					in.close();
 			} catch (IOException e) {
-				System.err.println("读取配置文件异常！！！");
+				log.error("get config error ！！！");
 			}
 		}
 	}

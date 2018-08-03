@@ -111,9 +111,9 @@ public class SVNPathToClassPath {
 				String context = SVNClientConf.PRONAME + FileUtil.separator + fp;
 				FileUtil.compress(zos, file, context);
 
-				log.info("打包文件:" + pathname);
+				log.info("compress file:" + pathname);
 			} else {
-				log.warn("文件在编译结果目录没有找到：" + status.getPath());
+				log.error("file not found：" + status.getPath());
 			}
 		}
 
